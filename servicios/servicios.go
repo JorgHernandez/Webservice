@@ -1,6 +1,7 @@
 package servicios
 
 import (
+	usuario "elevenminds/web/webservice/entidades"
 	"encoding/json"
 	"log"
 	"net/http"
