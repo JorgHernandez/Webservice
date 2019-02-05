@@ -17,7 +17,7 @@ var (
 func Inicia() (ErrDB error) {
 
 	var Error error
-	conexion, Error = obtenerConexion("192.168.13.15", 5432, "dev", "dev19", "alfa")
+	conexion, Error = obtenerConexion("192.168.0.1", 5432, "dev", "dev19", "alfa")
 
 	return Error
 }
