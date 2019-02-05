@@ -4,6 +4,7 @@ import (
 	"fmt"
 )
 
-func main() {
+// Inicia la ap
+func Inicia() {
 	fmt.Println("Hola")
 }

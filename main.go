@@ -1,9 +1,9 @@
 package main
 
 import (
-	"fmt"
+	"elevenminds/web/webservice/servicios"
 )
 
 func main() {
-	fmt.Println("Hola")
+	servicios.Inicia()
 }
