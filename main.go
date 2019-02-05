@@ -11,6 +11,10 @@ func main() {
 //
 //
 //comentarios
+<<<<<<< HEAD
+=======
+// fusion con master
+>>>>>>> origin/fabian
 //
 //
 //
