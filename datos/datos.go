@@ -22,9 +22,7 @@ func Inicia() (ErrDB error) {
 }
 
 func obtenerConexion(_DireccionIP string, _Puerto int) (Conexion *sql.DB, ErrOpen error) {
-
 	CadenaConexion := ""
-
 	Conexion, ErrOpen = sql.Open("postgres", CadenaConexion)
 	if ErrOpen != nil {
 		log.Println(ErrOpen.Error())

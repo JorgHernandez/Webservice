@@ -1,21 +1,9 @@
 package main
 
 import (
-	"fmt"
+	"./servicios"
 )
 
 func main() {
-	fmt.Println("Hola")
+	servicios.Inicia()
 }
-
-//
-//
-//comentarios
-// fusion con master
-//
-//
-//
-// fabian
-//
-//
-//
