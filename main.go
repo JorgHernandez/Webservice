@@ -1,10 +1,11 @@
 package main
 
 import (
-	"fmt"
+	"./servicios"
 )
 
 func main() {
+<<<<<<< HEAD
 	fmt.Println("Hola de nuevo")
 }
 
@@ -22,3 +23,7 @@ func main() {
 //
 //
 //
+=======
+	servicios.Inicia()
+}
+>>>>>>> origin/fabian
