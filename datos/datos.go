@@ -3,7 +3,8 @@ package datos
 import (
 	"fmt"
 )
-//un comentario
+//primer comentario
+//segundo comentario
 func main() {
 	fmt.Println("Hola")
 }
