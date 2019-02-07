@@ -45,3 +45,12 @@ func Buscar(id string) *sql.Row {
 
 	return conexion.QueryRow(sqlStatementSelect, id)
 }
+
+//Eliminar la inforacion del usuario respecto al ID
+func Eliminar(id string) bool {
+
+	sqlStatementSelect := `SELECT * FROM "Golang".users WHERE id=$1;`
+
+	conexion.QueryRow(sqlStatementSelect, id)
+	return true
+}
