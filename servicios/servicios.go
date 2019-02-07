@@ -8,6 +8,7 @@ import (
 	"encoding/json"
 	"log"
 	"net/http"
+	"strconv"
 
 	"github.com/gorilla/mux"
 )
@@ -25,9 +26,13 @@ func Inicia() {
 	r := mux.NewRouter()
 	r.HandleFunc("/", saluda).Methods("GET")
 	r.HandleFunc("/user/{id}", busca).Methods("GET")
+<<<<<<< HEAD
+	r.HandleFunc("/user/", inserta).Methods("POST")
+=======
 	r.HandleFunc("/user/delete/{id}", elimina).Methods("GET")
 	r.HandleFunc("/user/actualiza/{id}", actualiza).Methods("PATCH")
 
+>>>>>>> master
 	log.Fatal(http.ListenAndServe(":8000", r))
 }
 
@@ -82,4 +87,23 @@ func busca(w http.ResponseWriter, r *http.Request) {
 	default:
 		panic(err)
 	}
+}
+
+func inserta(w http.ResponseWriter, r *http.Request) {
+	user := usuario.User{}
+	decoder := json.NewDecoder(r.Body)
+	err := decoder.Decode(&user)
+	if err != nil {
+		panic(err)
+	}
+	//log.Println(user.Test)
+	res := datos.Insertar(user.Edad, user.Nombre, user.Apellido, user.Email)
+	//datos.Insertar(user.Edad, user.Nombre, user.Apellido, user.Email)
+
+	//userJson, err := json.Marshal(user)
+	if err != nil {
+		panic(err)
+	}
+
+	w.Write([]byte("\tNuevo usuario registrado ID: " + strconv.Itoa(res)))
 }
