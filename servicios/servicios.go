@@ -26,13 +26,11 @@ func Inicia() {
 	r := mux.NewRouter()
 	r.HandleFunc("/", saluda).Methods("GET")
 	r.HandleFunc("/user/{id}", busca).Methods("GET")
-<<<<<<< HEAD
 	r.HandleFunc("/user/", inserta).Methods("POST")
-=======
 	r.HandleFunc("/user/delete/{id}", elimina).Methods("GET")
 	r.HandleFunc("/user/actualiza/{id}", actualiza).Methods("PATCH")
 
->>>>>>> master
+
 	log.Fatal(http.ListenAndServe(":8000", r))
 }
 
