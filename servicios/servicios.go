@@ -8,6 +8,7 @@ import (
 	"encoding/json"
 	"log"
 	"net/http"
+	"strconv"
 
 	"github.com/gorilla/mux"
 )
@@ -50,14 +51,20 @@ func busca(w http.ResponseWriter, r *http.Request) {
 }
 
 func inserta(w http.ResponseWriter, r *http.Request) {
+	user := usuario.User{}
 	decoder := json.NewDecoder(r.Body)
-	t := usuario.User{}
-	err := decoder.Decode(&t)
+	err := decoder.Decode(&user)
 	if err != nil {
 		panic(err)
 	}
-	//log.Println(t.Test)
-	res := datos.Insertar(t.Edad, t.Nombre, t.Apellido, t.Email)
+	//log.Println(user.Test)
+	res := datos.Insertar(user.Edad, user.Nombre, user.Apellido, user.Email)
+	//datos.Insertar(user.Edad, user.Nombre, user.Apellido, user.Email)
 
-	log.Println("\tNuevo usuario registrado ID", res)
+	//userJson, err := json.Marshal(user)
+	if err != nil {
+		panic(err)
+	}
+
+	w.Write([]byte("\tNuevo usuario registrado ID: " + strconv.Itoa(res)))
 }

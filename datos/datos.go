@@ -57,5 +57,4 @@ func Insertar(age int, firstName string, lastName string, email string) int {
 		panic(err)
 	}
 	return id
-	//fmt.Println("\tNuevo usuario registrado ID", id)
 }
