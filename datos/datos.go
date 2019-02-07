@@ -12,6 +12,7 @@ import (
 var (
 	conexion *sql.DB
 )
+<<<<<<< HEAD
 
 //Inicia : inicia la ejecución la conexion
 func Inicia() (ErrDB error) {
@@ -44,4 +45,10 @@ func Buscar(id string) *sql.Row {
 	sqlStatementSelect := `SELECT * FROM "Golang".users WHERE id=$1;`
 
 	return conexion.QueryRow(sqlStatementSelect, id)
+=======
+//primer comentario
+//segundo comentario
+func main() {
+	fmt.Println("Hola")
+>>>>>>> da519d1c8bffd90a21953b59d09934b282f660d9
 }
