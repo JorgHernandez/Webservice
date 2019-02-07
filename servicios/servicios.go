@@ -27,6 +27,9 @@ func Inicia() {
 	r.HandleFunc("/", saluda).Methods("GET")
 	r.HandleFunc("/user/{id}", busca).Methods("GET")
 	r.HandleFunc("/user/", inserta).Methods("POST")
+	r.HandleFunc("/user/delete/{id}", elimina).Methods("GET")
+	r.HandleFunc("/user/actualiza/{id}", actualiza).Methods("PATCH")
+
 	log.Fatal(http.ListenAndServe(":8000", r))
 }
 
