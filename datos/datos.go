@@ -47,10 +47,9 @@ func Buscar(id string) *sql.Row {
 }
 
 //Eliminar la inforacion del usuario respecto al ID
-func Eliminar(id string) bool {
+func Eliminar(id string) error {
+	sqlStatement := `DELETE FROM "Golang".users WHERE id = $1;`
+	_, err := conexion.Exec(sqlStatement, id)
 
-	sqlStatementSelect := `SELECT * FROM "Golang".users WHERE id=$1;`
-
-	conexion.QueryRow(sqlStatementSelect, id)
-	return true
+	return err
 }

@@ -32,17 +32,13 @@ func Inicia() {
 func elimina(w http.ResponseWriter, r *http.Request) {
 	Vars := mux.Vars(r)
 	userID := Vars["id"]
-	u1 := usuario.User{}
-	row := datos.Buscar(userID)
-
-	switch err := row.Scan(&u1.ID, &u1.Edad, &u1.Nombre, &u1.Apellido, &u1.Email); err {
-	case sql.ErrNoRows:
-		w.Write([]byte("Sin resultados"))
-	case nil:
-		json.NewEncoder(w).Encode(u1)
-	default:
-		panic(err)
+	status := datos.Eliminar(userID)
+	if status != nil {
+		w.Write([]byte("Fallo al eliminar!!.."))
+		panic(status)
 	}
+	w.Write([]byte("Eliminado correctamente"))
+
 }
 
 func saluda(w http.ResponseWriter, r *http.Request) {
