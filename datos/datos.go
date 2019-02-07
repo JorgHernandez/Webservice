@@ -47,8 +47,6 @@ func Buscar(id string) *sql.Row {
 
 	return conexion.QueryRow(sqlStatementSelect, id)
 }
-
-<<<<<<< HEAD
 //Insertar registros a bd
 func Insertar(age int, firstName string, lastName string, email string) int {
 	//Prepara la insercion y devuelve el id creado
@@ -60,7 +58,7 @@ func Insertar(age int, firstName string, lastName string, email string) int {
 		panic(err)
 	}
 	return id
-=======
+
 //Actualiza la inforacion del usuario respecto al ID
 func Actualiza(id string, u1 usuario.User) error {
 	sqlStatementUpdate := `UPDATE "Golang".users SET first_name = $2, last_name = $3, email =$4,age=$5 WHERE id = $1;`
@@ -74,5 +72,4 @@ func Eliminar(id string) error {
 	_, err := conexion.Exec(sqlStatement, id)
 
 	return err
->>>>>>> master
 }
