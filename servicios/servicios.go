@@ -43,6 +43,7 @@ func actualiza(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		panic(err)
 	}
+	w.Write([]byte("actualizado correctamente"))
 }
 
 func jsonToUser(r *http.Request) usuario.User {
