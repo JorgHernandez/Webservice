@@ -26,7 +26,30 @@ func Inicia() {
 	r.HandleFunc("/", saluda).Methods("GET")
 	r.HandleFunc("/user/{id}", busca).Methods("GET")
 	r.HandleFunc("/user/delete/{id}", elimina).Methods("GET")
+	r.HandleFunc("/user/actualiza/{id}", actualiza).Methods("PATCH")
+
 	log.Fatal(http.ListenAndServe(":8000", r))
+}
+
+func actualiza(w http.ResponseWriter, r *http.Request) {
+	Vars := mux.Vars(r)
+	userID := Vars["id"]
+	u1 := jsonToUser(r)
+	err := datos.Actualiza(userID, u1)
+
+	if err != nil {
+		panic(err)
+	}
+}
+
+func jsonToUser(r *http.Request) usuario.User {
+	u1 := usuario.User{}
+	decoder := json.NewDecoder(r.Body)
+	err := decoder.Decode(&u1)
+	if err != nil {
+		log.Fatal(err)
+	}
+	return u1
 }
 
 func elimina(w http.ResponseWriter, r *http.Request) {

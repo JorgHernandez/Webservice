@@ -1,7 +1,9 @@
 package datos
 
 import (
+	//marcos "elevenminds/web/Webservice/entidades"
 	"database/sql"
+	usuario "elevenminds/web/webservice/entidades"
 	"fmt"
 	"log"
 
@@ -44,6 +46,13 @@ func Buscar(id string) *sql.Row {
 	sqlStatementSelect := `SELECT * FROM "Golang".users WHERE id=$1;`
 
 	return conexion.QueryRow(sqlStatementSelect, id)
+}
+
+//Actualiza la inforacion del usuario respecto al ID
+func Actualiza(id string, u1 usuario.User) error {
+	sqlStatementUpdate := `UPDATE "Golang".users SET first_name = $2, last_name = $3, email =$4,age=$5 WHERE id = $1;`
+	_, err := conexion.Exec(sqlStatementUpdate, id, u1.Nombre, u1.Apellido, u1.Email, u1.Edad)
+	return err
 }
 
 //Eliminar la inforacion del usuario respecto al ID
