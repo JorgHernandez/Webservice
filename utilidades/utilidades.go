@@ -1,9 +1,6 @@
-package hola
+package utilidades
 
-import (
-	"fmt"
-)
+//Inicia Inicializa las propiedades especificas del servicio
+func Inicia() {
 
-func main() {
-	fmt.Println("Hola")
 }

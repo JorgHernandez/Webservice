@@ -1,29 +1,9 @@
 package main
 
 import (
-	"./servicios"
+	"elevenminds/web/webservice/servicios"
 )
 
 func main() {
-<<<<<<< HEAD
-	fmt.Println("Hola de nuevo")
-}
-
-//
-//
-//comentarios
-<<<<<<< HEAD
-=======
-// fusion con master
->>>>>>> origin/fabian
-//
-//
-//
-// fabian
-//
-//
-//
-=======
 	servicios.Inicia()
 }
->>>>>>> origin/fabian
