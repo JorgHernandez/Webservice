@@ -25,7 +25,7 @@ func Inicia() {
 	r := mux.NewRouter()
 	r.HandleFunc("/", saluda).Methods("GET")
 	r.HandleFunc("/user/{id}", busca).Methods("GET")
-	r.HandleFunc("/user/", inserta).Methods("GET")
+	r.HandleFunc("/user/", inserta).Methods("POST")
 	log.Fatal(http.ListenAndServe(":8000", r))
 }
 
