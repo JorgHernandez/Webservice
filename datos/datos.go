@@ -58,7 +58,7 @@ func Insertar(age int, firstName string, lastName string, email string) int {
 		panic(err)
 	}
 	return id
-
+}
 //Actualiza la inforacion del usuario respecto al ID
 func Actualiza(id string, u1 usuario.User) error {
 	sqlStatementUpdate := `UPDATE "Golang".users SET first_name = $2, last_name = $3, email =$4,age=$5 WHERE id = $1;`
