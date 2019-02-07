@@ -25,6 +25,7 @@ func Inicia() {
 	r := mux.NewRouter()
 	r.HandleFunc("/", saluda).Methods("GET")
 	r.HandleFunc("/user/{id}", busca).Methods("GET")
+	r.HandleFunc("/user/", inserta).Methods("GET")
 	log.Fatal(http.ListenAndServe(":8000", r))
 }
 
@@ -46,4 +47,17 @@ func busca(w http.ResponseWriter, r *http.Request) {
 	default:
 		panic(err)
 	}
+}
+
+func inserta(w http.ResponseWriter, r *http.Request) {
+	decoder := json.NewDecoder(r.Body)
+	t := usuario.User{}
+	err := decoder.Decode(&t)
+	if err != nil {
+		panic(err)
+	}
+	//log.Println(t.Test)
+	res := datos.Insertar(t.Edad, t.Nombre, t.Apellido, t.Email)
+
+	log.Println("\tNuevo usuario registrado ID", res)
 }

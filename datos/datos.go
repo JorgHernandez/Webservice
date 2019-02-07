@@ -45,3 +45,17 @@ func Buscar(id string) *sql.Row {
 
 	return conexion.QueryRow(sqlStatementSelect, id)
 }
+
+//Insertar registros a bd
+func Insertar(age int, firstName string, lastName string, email string) int {
+	//Prepara la insercion y devuelve el id creado
+	sqlStatementInsert := ` INSERT INTO "Golang".users (age, first_name, last_name, email) VALUES ($1, $2, $3, $4) RETURNING id`
+	id := 0
+	//Ejecuta y comprueba si hay errores
+	err := conexion.QueryRow(sqlStatementInsert, age, firstName, lastName, email).Scan(&id)
+	if err != nil {
+		panic(err)
+	}
+	return id
+	//fmt.Println("\tNuevo usuario registrado ID", id)
+}
