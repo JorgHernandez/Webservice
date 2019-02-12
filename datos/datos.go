@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"log"
 
+	//
 	_ "github.com/lib/pq"
 )
 
@@ -52,7 +53,7 @@ func Buscar(id string) *sql.Row {
 //Insertar registros a bd
 func Insertar(age int, firstName string, lastName string, email string) int {
 	//Prepara la insercion y devuelve el id creado
-	sqlStatementInsert := ` INSERT INTO "public".users (age, first_name, last_name, email) VALUES ($1, $2, $3, $4) RETURNING id`
+	sqlStatementInsert := ` INSERT INTO "Golang".users (age, first_name, last_name, email) VALUES ($1, $2, $3, $4) RETURNING id`
 	id := 0
 	//Ejecuta y comprueba si hay errores
 	err := conexion.QueryRow(sqlStatementInsert, age, firstName, lastName, email).Scan(&id)
@@ -77,11 +78,10 @@ func Eliminar(id string) error {
 	return err
 }
 
-//getusers
-func getusers() ([]usuario.User, error) {
+//GetUsers consulta de datos
+func GetUsers() ([]usuario.User, error) {
 	rows, err := conexion.Query(
-
-		`SELECT * FROM "public".users`)
+		`SELECT * FROM public.users`)
 	if err != nil {
 		return nil, err
 	}
@@ -94,7 +94,5 @@ func getusers() ([]usuario.User, error) {
 		}
 		usr = append(usr, u1)
 	}
-	fmt.Println(usr)
 	return usr, nil
-
 }

@@ -16,12 +16,6 @@ import (
 var tempemail, tempname, templastname string
 var tempid int
 
-//App name fnfnfnf
-type App struct {
-	Router *mux.Router
-	DB     *sql.DB
-}
-
 // Inicia la ap
 func Inicia() {
 	utilidades.Inicia()
@@ -35,7 +29,7 @@ func Inicia() {
 	r.HandleFunc("/user/", inserta).Methods("POST")
 	r.HandleFunc("/user/delete/{id}", elimina).Methods("GET")
 	r.HandleFunc("/user/actualiza/{id}", actualiza).Methods("PATCH")
-	r.HandleFunc("/user/usuarios", getusers).Methods("GET")
+	r.HandleFunc("/user/usuarios/", getuserss).Methods("GET")
 
 	log.Fatal(http.ListenAndServe(":8000", r))
 }
@@ -93,8 +87,26 @@ func busca(w http.ResponseWriter, r *http.Request) {
 		panic(err)
 	}
 }
-func getusers(w http.ResponseWriter, r *http.Request) {
-			//
+
+var m map[int]usuario.User
+
+func getuserss(w http.ResponseWriter, r *http.Request) {
+	datos.Inicia()
+	us, err := datos.GetUsers()
+	if err != nil {
+		log.Println(us)
+	}
+	m = make(map[int]usuario.User)
+	for _, v := range us {
+		m[v.ID] = v
+	}
+
+	//jsonString, err := json.Marshal(m)
+	json.NewEncoder(w).Encode(us)
+	if err != nil {
+		panic(err)
+	}
+	//fmt.Println(m[1])
 }
 func inserta(w http.ResponseWriter, r *http.Request) {
 	user := usuario.User{}
