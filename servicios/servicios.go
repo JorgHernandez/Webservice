@@ -103,9 +103,6 @@ func getuserss(w http.ResponseWriter, r *http.Request) {
 
 	//jsonString, err := json.Marshal(m)
 	json.NewEncoder(w).Encode(us)
-	if err != nil {
-		panic(err)
-	}
 	//fmt.Println(m[1])
 }
 func inserta(w http.ResponseWriter, r *http.Request) {
